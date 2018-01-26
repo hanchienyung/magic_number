@@ -1,6 +1,7 @@
 package cy.demo.springboot.demo;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Scanner;
@@ -8,22 +9,14 @@ import java.util.Scanner;
 @RestController
 public class MagicNumber {
 
-    @RequestMapping("/")
-    public StringBuffer showPattern(){
+    //This version gets the number from the URL
 
-        Integer input_num;
-        Integer num;
-        //String display = "";
+    @RequestMapping("/magic_num")
+    public StringBuffer showPattern(@RequestParam("num") int num){
+
 
         StringBuffer display = new StringBuffer("");
 
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("Enter a positive integer > 0:");
-
-
-        input_num = keyboard.nextInt();
-        num = input_num;
 
         display.append("Starting Number: ");
         display.append(String.valueOf(num));
@@ -32,9 +25,6 @@ public class MagicNumber {
         display.append(String.valueOf(num));
         display.append("   ");
 
-        //display = display + "Starting Number: " + String.valueOf(num) + "<br/>";
-
-        //display = display + String.valueOf(num) + "   ";
 
         while (num != 1){
 
@@ -47,7 +37,6 @@ public class MagicNumber {
                num = 3 * num + 1;
            }
 
-           //display = display + "   " +  + "   ";
 
            display.append(String.valueOf(num)) ;
            display.append("    ");
